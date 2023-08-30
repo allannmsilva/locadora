@@ -24,8 +24,8 @@ public abstract class QueryFactory {
 
         try {
 
-            sessao = HibernateConnection.getSessionFactory().openSession();
-            entityTransaction = (EntityTransaction) sessao.getTransaction();
+            sessao = HibernateConnection.getSession();
+            entityTransaction = sessao.getTransaction();
             entityTransaction.begin();
 
             CriteriaBuilder criteriaBuilder = sessao.getCriteriaBuilder();
@@ -36,7 +36,6 @@ public abstract class QueryFactory {
             resultList = query.getResultList();
 
             entityTransaction.commit();
-            sessao.close();
 
         } catch (HibernateException hex) {
             if (entityTransaction != null) {
@@ -54,13 +53,12 @@ public abstract class QueryFactory {
 
         try {
 
-            sessao = HibernateConnection.getSessionFactory().openSession();
+            sessao = HibernateConnection.getSession();
             sessao.beginTransaction();
 
             sessao.save(body);
 
             sessao.getTransaction().commit();
-            sessao.close();
 
         } catch (HibernateException hex) {
             if (sessao != null) {
@@ -76,13 +74,12 @@ public abstract class QueryFactory {
 
         try {
 
-            sessao = HibernateConnection.getSessionFactory().openSession();
+            sessao = HibernateConnection.getSession();
             sessao.beginTransaction();
 
             sessao.update(body);
 
             sessao.getTransaction().commit();
-            sessao.close();
 
         } catch (HibernateException hex) {
             if (sessao != null) {
@@ -99,14 +96,13 @@ public abstract class QueryFactory {
 
         try {
 
-            sessao = HibernateConnection.getSessionFactory().openSession();
+            sessao = HibernateConnection.getSession();
             entityTransaction = sessao.getTransaction();
             entityTransaction.begin();
 
             sessao.delete(body);
 
             entityTransaction.commit();
-            sessao.close();
 
         } catch (HibernateException hex) {
             if (entityTransaction != null) {
@@ -121,13 +117,12 @@ public abstract class QueryFactory {
         Session sessao = null;
         Object objReturn = null;
         try {
-            sessao = HibernateConnection.getSessionFactory().openSession();
+            sessao = HibernateConnection.getSession();
             sessao.getTransaction().begin();
 
             objReturn = sessao.get(classe, id);
 
             sessao.getTransaction().commit();
-            sessao.close();
         } catch (HibernateException ex) {
             if (sessao != null) {
                 sessao.getTransaction().rollback();
