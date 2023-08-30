@@ -10,10 +10,15 @@
         div {
             width: 60%;
             margin: 0 auto;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
+<div><a href="${pageContext.request.contextPath}"><input type="button" value="Voltar"
+                                                         class="btn btn-secondary"/></a>
+</div>
+
 <h4 class="text-center mt-4">Cadastrar Ator</h4>
 <form method="POST" action="ator">
     <div class="mb-3">
@@ -38,8 +43,7 @@
     }
     if (params.codigoAtor && params.nomeAtor) {
         const input = document.getElementById("inserirAtor");
-        input.value = "Editar";
-        input.className = "btn btn-warning";
+        input.value = "Salvar";
     }
 </script>
 </body>

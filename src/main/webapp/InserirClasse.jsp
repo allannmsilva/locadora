@@ -10,10 +10,15 @@
         div {
             width: 60%;
             margin: 0 auto;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
+<div><a href="${pageContext.request.contextPath}"><input type="button" value="Voltar"
+                                                         class="btn btn-secondary"/></a>
+</div>
+
 <h4 class="text-center mt-4">Cadastrar Classe</h4>
 <form method="POST" action="classe">
     <div class="mb-3">
@@ -22,8 +27,8 @@
         <input class="form-control" type="text" name="nomeClasse" id="nomeClasse">
         <label class="form-label" for="valor">Valor</label>
         <input class="form-control" type="number" step="any" name="valor" id="valor">
-        <label class="form-label" for="valor">Data Devolução</label>
-        <input class="form-control" type="date" name="dataDevolucao" id="dataDevolucao">
+        <label class="form-label" for="dataDevolucao">Data Devolução</label>
+        <input class="form-control" type="date" maxlength="8" name="dataDevolucao" id="dataDevolucao">
     </div>
     <div class="text-center"><input type="submit" class="btn btn-success" value="Inserir Classe" id="inserirClasse"/>
     </div>
@@ -51,8 +56,7 @@
     }
     if (params.codigoClasse && params.nomeClasse) {
         const input = document.getElementById("inserirClasse");
-        input.value = "Editar";
-        input.className = "btn btn-warning";
+        input.value = "Salvar";
     }
 </script>
 </body>

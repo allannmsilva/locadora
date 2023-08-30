@@ -44,9 +44,11 @@ public class ClasseServlet extends HttpServlet {
             return;
         }
 
-        Classe ator = DMLActions.findByIdClasse(Long.parseLong(codigo));
-        ator.setNomeClasse(nome);
-        DMLActions.updateClasse(ator);
+        Classe classe = DMLActions.findByIdClasse(Long.parseLong(codigo));
+        classe.setNomeClasse(nome);
+        classe.setValor(Double.parseDouble(valor));
+        classe.setDataDevolucao(Date.valueOf(dataDevolucao));
+        DMLActions.updateClasse(classe);
         RequestDispatcher dispatcher = req.getRequestDispatcher("ListarClasses.jsp");
         dispatcher.forward(req, resp);
     }

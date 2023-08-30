@@ -12,7 +12,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html data-bs-theme="dark">
-<h4 class="text-center mt-4">Lista de Classes</h4>
 <head>
     <title>Classes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -22,6 +21,7 @@
         div {
             width: 60%;
             margin: 0 auto;
+            padding: 20px;
         }
 
         td, th {
@@ -32,6 +32,12 @@
     </style>
 </head>
 <body>
+
+<div><a href="${pageContext.request.contextPath}"><input type="button" value="Voltar"
+                                                         class="btn btn-secondary"/></a>
+</div>
+
+<h4 class="text-center mt-4">Lista de Classes</h4>
 <div class="mb-3">
     <table class="table table-hover align-middle" id="tabelaClasses">
         <thead>
@@ -59,7 +65,7 @@
             <td><%= new SimpleDateFormat("dd/MM/yyyy").format(classe.getDataDevolucao())%>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/InserirClasse.jsp?codigoClasse=<%=classe.getCodigoClasse()%>&nomeClasse=<%=classe.getNomeClasse()%>&valor=<%=classe.getValor()%>&dataDevolucao=<%=classe.getDataDevolucao()%>"><input
+                <a href="${pageContext.request.contextPath}/InserirClasse.jsp?codigoClasse=<%=classe.getCodigoClasse()%>&nomeClasse=<%=classe.getNomeClasse()%>&valor=<%=classe.getValor()%>&dataDevolucao=<%=new SimpleDateFormat("yyyy-MM-dd").format(classe.getDataDevolucao())%>"><input
                         type="button" class="btn btn-outline-warning btn-sm" value="Editar" id="editarClasse"/></a></td>
             <td><a href="classe?codigoClasse=<%=classe.getCodigoClasse()%>"><input type="button"
                                                                                    class="btn btn-outline-danger btn-sm"
